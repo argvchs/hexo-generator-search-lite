@@ -4,7 +4,7 @@
 
 ## 安装
 
-把 `main.js` 的内容复制到 `/blog/scripts/hexo-generator-search-lite.js` 即可
+把 `main.js` 的内容复制到 `/scripts/hexo-generator-search-lite.js` 即可
 
 ```js
 // main.js
