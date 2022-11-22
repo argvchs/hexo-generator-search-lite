@@ -36,6 +36,7 @@ hexo.extend.generator.register("json", locals => {
 ```yaml
 search:
     path: # Default: search.json
+    optimize: false # Optimize
 ```
 
 ## 数据
@@ -44,24 +45,39 @@ search:
 
 **Front-Matter 中设置了 `nosearch` 的不会添加到搜索数据**
 
-```json
-[
-    {
-        "path": "/post",
-        "title": "post",
-        "date": "YYYY/M/D",
-        "categories": [
-            {
-                "name": "category",
-                "path": "/categories/category"
-            }
-        ],
-        "tags": [
-            {
-                "name": "tag",
-                "path": "/tags/tag"
-            }
-        ]
-    }
-]
-```
+-   `optimize: false`
+
+    ```json
+    [
+        {
+            "path": "/post",
+            "title": "post",
+            "date": "YYYY/M/D",
+            "categories": [
+                {
+                    "name": "category",
+                    "path": "/categories/category"
+                }
+            ],
+            "tags": [
+                {
+                    "name": "tag",
+                    "path": "/tags/tag"
+                }
+            ]
+        }
+    ]
+    ```
+
+-   `optimize: true`
+
+    `sdate` 的内容为 Title Categories Tags 去除空字符并转小写后，再用空格链接
+
+    ```json
+    [
+        {
+            "path": "/post",
+            "sdata": "title category tag"
+        }
+    ]
+    ```
