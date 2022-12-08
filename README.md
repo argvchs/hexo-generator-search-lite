@@ -20,8 +20,6 @@ search:
 
 格式如下（不含文章内容）
 
-**Front-Matter 中设置了 `nosearch` 的不会添加到搜索数据**
-
 -   `optimize: false`
 
     ```json

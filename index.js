@@ -8,7 +8,6 @@ hexo.extend.generator.register("json", locals => {
     let posts = locals.posts.sort("-date"),
         data = [];
     posts?.each(post => {
-        if (post.nosearch) return;
         if (config.search?.optimize) {
             let sdata = procstr(post.title);
             if (post.categories) sdata += " " + post.categories.map(i => procstr(i.name)).join(" ");
