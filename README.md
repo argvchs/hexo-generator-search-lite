@@ -4,31 +4,8 @@
 
 ## 安装
 
-把 `main.js` 的内容复制到 `/scripts/hexo-generator-search-lite.js` 即可
-
-```js
-// main.js
-const config = hexo.config;
-const path = config.search?.path || "search.json";
-hexo.extend.generator.register("json", locals => {
-    let posts = locals.posts.sort("-date"),
-        data = [];
-    posts?.each(post => {
-        if (post.nosearch) return;
-        data.push({
-            path: config.root + post.path,
-            title: post.title,
-            date: post.date.format("YYYY/M/D"),
-            tags: post.tags?.map(tag => ({ name: tag.name, path: config.root + tag.path })),
-            categories: post.categories?.map(category => ({
-                name: category.name,
-                path: config.root + category.path,
-            })),
-        });
-    });
-    let json = JSON.stringify(data);
-    return { path: path, data: json };
-});
+```bash
+npm i hexo-generator-search-lite -S
 ```
 
 ## 配置
@@ -71,7 +48,7 @@ search:
 
 -   `optimize: true`
 
-    `sdate` 的内容为 Title Categories Tags 去除空字符并转小写后，再用空格链接
+    `sdata` 的内容为 Title Categories Tags 分别**去除空字符**并**转小写**后，再用空格连接
 
     ```json
     [
