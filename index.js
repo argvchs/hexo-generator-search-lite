@@ -1,5 +1,4 @@
 const config = hexo.config;
-const path = config.search?.path || "search.json";
 function procstr(str) {
     if (typeof str === "undefined" || str == null) return "";
     return str.toLowerCase().replace(/\s+/g, "");
@@ -9,13 +8,10 @@ hexo.extend.generator.register("json", locals => {
         data = [];
     posts?.each(post => {
         if (config.search?.optimize) {
-            let sdata = procstr(post.title);
-            if (post.categories) sdata += " " + post.categories.map(i => procstr(i.name)).join(" ");
-            if (post.tags) sdata += " " + post.tags.map(i => procstr(i.name)).join(" ");
-            data.push({
-                path: config.root + post.path,
-                sdata,
-            });
+            let odata = procstr(post.title);
+            if (post.categories) odata += " " + post.categories.map(i => procstr(i.name)).join(" ");
+            if (post.tags) odata += " " + post.tags.map(i => procstr(i.name)).join(" ");
+            data.push({ path: config.root + post.path, odata });
         } else
             data.push({
                 path: config.root + post.path,
@@ -28,6 +24,8 @@ hexo.extend.generator.register("json", locals => {
                 })),
             });
     });
-    let json = JSON.stringify(data);
-    return { path: path, data: json };
+    return {
+        path: config.search?.path || "/search.json",
+        data: JSON.stringify(data),
+    };
 });

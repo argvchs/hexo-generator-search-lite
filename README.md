@@ -12,13 +12,13 @@ npm i hexo-generator-search-lite -S
 
 ```yaml
 search:
-    path: # Default: search.json
-    optimize: false # Optimize
+    path: /search.json
+    optimize: false
 ```
 
 ## 数据
 
-格式如下（不含文章内容）
+格式如下
 
 -   `optimize: false`
 
@@ -46,13 +46,13 @@ search:
 
 -   `optimize: true`
 
-    `sdata` 的内容为 Title Categories Tags 分别**去除空字符**并**转小写**后，再用空格连接
+    `odata` 的内容为 Title Categories Tags 分别**去除空字符**并**转小写**后，再用空格连接
 
     ```json
     [
         {
             "path": "/post",
-            "sdata": "title category tag"
+            "odata": "title category tag"
         }
     ]
     ```
