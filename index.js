@@ -1,7 +1,7 @@
 const config = hexo.config;
 function procstr(str) {
-    if (typeof str === "undefined" || str == null) return "";
-    return str.toLowerCase().replace(/\s+/g, "");
+    if (!str) return "";
+    return str.toLowerCase().replace(/\s+/gm, "");
 }
 hexo.extend.generator.register("json", locals => {
     let posts = locals.posts.sort("-date"),
@@ -9,8 +9,9 @@ hexo.extend.generator.register("json", locals => {
     posts?.each(post => {
         if (config.search?.optimize) {
             let odata = procstr(post.title);
-            if (post.categories) odata += " " + post.categories.map(i => procstr(i.name)).join(" ");
-            if (post.tags) odata += " " + post.tags.map(i => procstr(i.name)).join(" ");
+            if (post.categories?.length)
+                odata += " " + post.categories.map(i => procstr(i.name)).join(" ");
+            if (post.tags?.length) odata += " " + post.tags.map(i => procstr(i.name)).join(" ");
             data.push({ path: config.root + post.path, odata });
         } else
             data.push({

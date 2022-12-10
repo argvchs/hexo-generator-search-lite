@@ -25,18 +25,18 @@ search:
     ```json
     [
         {
-            "path": "/post",
-            "title": "post",
+            "path": "/path",
+            "title": "Title",
             "date": "YYYY/M/D",
             "categories": [
                 {
-                    "name": "category",
+                    "name": "Category",
                     "path": "/categories/category"
                 }
             ],
             "tags": [
                 {
-                    "name": "tag",
+                    "name": "Tag",
                     "path": "/tags/tag"
                 }
             ]
@@ -51,7 +51,7 @@ search:
     ```json
     [
         {
-            "path": "/post",
+            "path": "/path",
             "odata": "title category tag"
         }
     ]
