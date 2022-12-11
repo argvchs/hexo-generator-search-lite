@@ -12,7 +12,7 @@ hexo.extend.generator.register("json", locals => {
             if (post.categories?.length)
                 odata += " " + post.categories.map(i => procstr(i.name)).join(" ");
             if (post.tags?.length) odata += " " + post.tags.map(i => procstr(i.name)).join(" ");
-            data.push({ path: encodeURI(config.root) + post.path, odata });
+            data.push({ path: encodeURI(config.root + post.path), odata });
         } else
             data.push({
                 path: encodeURI(config.root + post.path),
