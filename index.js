@@ -12,16 +12,19 @@ hexo.extend.generator.register("json", locals => {
             if (post.categories?.length)
                 odata += " " + post.categories.map(i => procstr(i.name)).join(" ");
             if (post.tags?.length) odata += " " + post.tags.map(i => procstr(i.name)).join(" ");
-            data.push({ path: config.root + post.path, odata });
+            data.push({ path: encodeURI(config.root) + post.path, odata });
         } else
             data.push({
-                path: config.root + post.path,
+                path: encodeURI(config.root + post.path),
                 title: post.title,
                 date: post.date.format("YYYY/M/D"),
-                tags: post.tags?.map(tag => ({ name: tag.name, path: config.root + tag.path })),
+                tags: post.tags?.map(tag => ({
+                    name: tag.name,
+                    path: encodeURI(config.root + tag.path),
+                })),
                 categories: post.categories?.map(category => ({
                     name: category.name,
-                    path: config.root + category.path,
+                    path: encodeURI(config.root + category.path),
                 })),
             });
     });
