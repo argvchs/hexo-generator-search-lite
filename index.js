@@ -1,17 +1,17 @@
 const config = hexo.config;
-function procstr(str) {
-    if (!str) return "";
-    return str.toLowerCase().replace(/\s+/gm, "");
+function rstr(s) {
+    if (!s) return "";
+    return s.toLowerCase().replace(/\s+/gm, "");
 }
 hexo.extend.generator.register("json", locals => {
     let posts = locals.posts.sort("-date"),
         data = [];
     posts?.each(post => {
         if (config.search?.optimize) {
-            let odata = procstr(post.title);
+            let odata = rstr(post.title);
             if (post.categories?.length)
-                odata += " " + post.categories.map(i => procstr(i.name)).join(" ");
-            if (post.tags?.length) odata += " " + post.tags.map(i => procstr(i.name)).join(" ");
+                odata += " " + post.categories.map(i => rstr(i.name)).join(" ");
+            if (post.tags?.length) odata += " " + post.tags.map(i => rstr(i.name)).join(" ");
             data.push({ path: encodeURI(config.root + post.path), odata });
         } else
             data.push({
