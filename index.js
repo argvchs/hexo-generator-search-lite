@@ -18,14 +18,16 @@ hexo.extend.generator.register("json", locals => {
                 path: encodeURI(config.root + post.path),
                 title: post.title,
                 date: post.date.format("YYYY/M/D"),
-                tags: post.tags?.map(tag => ({
-                    name: tag.name,
-                    path: encodeURI(config.root + tag.path),
-                })),
-                categories: post.categories?.map(category => ({
-                    name: category.name,
-                    path: encodeURI(config.root + category.path),
-                })),
+                tags:
+                    post.tags?.map(tag => ({
+                        name: tag.name,
+                        path: encodeURI(config.root + tag.path),
+                    })) ?? [],
+                categories:
+                    post.categories?.map(category => ({
+                        name: category.name,
+                        path: encodeURI(config.root + category.path),
+                    })) ?? [],
             });
     });
     return {
